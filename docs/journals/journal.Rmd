@@ -1,0 +1,25 @@
+---
+title: "Journal"
+output:
+  pdf_document: default
+---
+# Monday 22.7.2019
+
+* Create new repo on github, clone to local, start new Rstudio project using standard template. 
+* clean up makefile and get it to work!
+* missing packages, manage to install V8 (via `yay -S v8-3.14-bin`) and DiagrammeRsvg
+* `make dot` throws error though: "fatal error in ../src/platform-linux.cc, line 782", "CHECK-EQ(0,result) failed. Expected: 0 Found:22
+* OK, looks like there is an issue with how I've installed V8 on this laptop, seems that DiagrammeRsvg---although installed ok--doensn't actually work. 
+* So I'll remove the dot.png from the makefile, that's the only place it is used anyway.. 
+* to demo the idea i can still use an old example. 
+* oh, wow actually there's a command called `dot` in shell that does about 7 steps of my old R script in one. I've changed to that!
+* OK, this now works, I need to update the template!
+So this is what my makefile looks like graphically at the minute:
+
+```{r, echo = FALSE, out.width='100%'}
+knitr::include_graphics(paste0(rprojroot::find_root("Makefile"),"/figures/make.png"))
+```
+
+OK, now let's have a look at `packrat`. 
+* run packrat::init()
+* initialization complete!
