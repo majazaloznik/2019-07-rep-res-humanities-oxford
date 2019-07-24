@@ -4,6 +4,24 @@ output:
   pdf_document: default
 bibliography: ..\/..\/data\/dictionaries\/lit.bib
 ---
+# Reproducibility--what does it even mean?
+
+
+# reproducibility in the humanities
+
+
+# Reproducibility in Qualitative Research
+
+
+
+
+
+
+## open data
+
+## open analysis
+
+## licences
 
 
 ## packrat
@@ -104,14 +122,14 @@ BestFFTroutine ever file. Fred Bloggs, EPCC, The University of Edinburgh, UK. Fr
 In addition to software there are other environmental variables that should be explicitly stated if they affect the results: " This information may include: operating system, specific packages, sub-routines, queries, files, libraries, scripts, service end-points, configurations, parameters or workflows" "this information should be described in the body of your paper, in the methods section, footnotes, acknowledgements or appendices.
 
 
-```{r phd, echo=FALSE, fig.cap="PhD: final.doc [http://phdcomics.com/comics/archive.php?comicid=1531]", out.width = '2000'}
+```{r phd, echo=FALSE, fig.cap="PhD: final.doc [http://phdcomics.com/comics/archive.php?comicid=1531]", out.height ='70%', out.width = '70%'}
 knitr::include_graphics(here::here("/figures/final-doc.jpg"))
 ```
 
 
-
 ## style guide 
-```{r xkcd, echo=FALSE, fig.cap="[xkcd: Code Quality [https://xkcd.com/1513/]", out.width = '110%'}
+
+```{r xkcd, echo=FALSE, fig.cap="[xkcd: Code Quality [https://xkcd.com/1513/]", out.width = '90%'}
 knitr::include_graphics(here::here("/figures/code_quality.png"))
 ```
 

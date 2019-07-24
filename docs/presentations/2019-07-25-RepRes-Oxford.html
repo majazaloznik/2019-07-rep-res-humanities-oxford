@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+  <head>
+    <title>Reproducible Research</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Maja Založnik" />
+    <meta name="date" content="2019-07-25" />
+    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/default-fonts.css" rel="stylesheet" />
+    <link rel="stylesheet" href="my-theme.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Reproducible Research
+## (in the Humanities)
+### Maja Založnik
+### 25 July 2019
+
+---
+
+
+
+
+# Outline of this talk
+
+--
+
+* ### Reproducibility: *What?*
+
+
+???
+
+So first of all we should try to get on the same playing field, I want to briefly talk about what Reproducibility is, what we mean by reproducible research. 
+--
+
+* ### Reproducibility: *Why?*
+
+???
+
+Next i will talk about WHY reproducible research is important, why it should be important to you
+
+--
+
+* ### Reproducibility: *Where?*
+
+
+???
+
+By where I mean "in the humanities", so I'll briefly touch on how we think about reproducibility in computational fields and in non-computational fields, although the focus of the talk is of course the former. 
+
+---
+# Outline of this talk
+
+* ### Reproducibility: *What?*
+
+
+* ### Reproducibility: *Why?*
+
+
+* ### Reproducibility: *Where?*
+
+
+* ### Reproducibllity: *How?*
+
+???
+
+Now for the gist of the talk, how do we apply these principles and which tools do we use to make the whole workflow reproducible, from the data gathering, to its analysis and finally its presentation.
+
+--
+
+    + #### *Principles*
+    + #### *Tools*
+
+???
+
+So within the how we will discuss the principles which underpin reproducibility in practice such as open data, open research and transparency, and also some of the tools that make this process easier to manage and help you setup a reproducible workflow. 
+
+Again this refers to all the steps in the research process from data gathering, analysis to presentation and disemmenation. I will discuss in particular R and Rstudio, git and make and knitr. 
+  
+---
+
+# What is Reproducibility?
+
+* Reproducibility vs Replicability or Replication?
+
+???
+OK, so first of all I want to make it clear what I mean by reproducibility. In particular in relation to replicability or replication of research. The thing is that both these terms are very often used interchangeably and that can sometimes lead to confusion. So here's the way I will use them here. 
+---
+
+# What is Reproducibility?
+
+* Reproducibility vs Replicability or Replication?
+
+* Replication: *"The confirmation of results and conclusions from one study obtained independently in another"*
+&lt;!-- .right[ (Jasny, Chin, Chong, and Vignieri, 2011)] --&gt;
+
+???
+We generally understand replication and reproducibility to be the golden standard of scientific research. Here's a definition I like this is for replication: "The confirmation of results and conclusions from one study obtained independently in another". This is from the editorial to a special issue of Science dedicated to "Data replicability and reproducibility". 
+---
+
+# What is Reproducibility?
+
+* Reproducibility vs Replicability or Replication?
+
+* Replication: *"The confirmation of results and conclusions from one study obtained independently in another"*
+&lt;!-- .right[ (Jasny, Chin, Chong, et al., 2011)] --&gt;
+
+* Reproducibility: *"[T]he independent verification of prior findings"*
+&lt;!-- .right[(Santer, Wigley, and Taylor, 2011)] --&gt;
+
+???
+Here's another good one from the same issue, which is even more condensed: "[T]he independent verification of prior findings", although they are talking about reproducibility here. So like I said, even within the specialists dealing with this topic the terms seem to get mixed and interpreterd synonymously quite often. 
+
+---
+
+# What is Reproducibility?
+
+* Reproducibility vs Replicability or Replication?
+
+* Replication: *"The confirmation of results and conclusions from one study obtained independently in another"*
+&lt;!-- .right[ (Jasny, Chin, Chong, et al., 2011)] --&gt;
+
+* Reproducibility: *"[T]he independent verification of prior findings"*
+&lt;!-- .right[(Santer, Wigley, and Taylor, 2011)] --&gt;
+**Levels of Replication :**
+
+???
+
+So when I talk about replication I mean it in the broad sense relating to findings and conclusions. But within that I think we can speak of several layers or levels of replication.
+---
+
+# What is Reproducibility?
+
+* Reproducibility vs Replicability or Replication?
+
+* Replication: *"The confirmation of results and conclusions from one study obtained independently in another"*
+&lt;!-- .right[ (Jasny, Chin, Chong, et al., 2011)] --&gt;
+
+* Reproducibility: *"[T]he independent verification of prior findings"*
+&lt;!-- .right[(Santer, Wigley, and Taylor, 2011)] --&gt;
+**Levels of Replication :**
+
+1. Re-ask the question 
+
+???
+
+The first level is to reask the question from scratch and attempt to confirm a finding or conclusion with a whole new experiment.
+
+
+2. Re-do the experiment 
+
+???
+
+The second is to redo an experiment - trying to follow the original methods as closely as possible.
+--
+
+3. Re-analyse the data
+
+???
+
+The third level is to reanalyse the data from an experiment - using different methods, models what have you.
+---
+
+# What is Reproducibility?
+
+* Reproducibility vs Replicability or Replication?
+
+* Replication: *"The confirmation of results and conclusions from one study obtained independently in another"*
+&lt;!-- .right[ (Jasny, Chin, Chong, et al., 2011)] --&gt;
+
+* Reproducibility: *"[T]he independent verification of prior findings"*
+&lt;!-- .right[(Santer, Wigley, and Taylor, 2011)] --&gt;
+**Levels of Replication :**
+
+1. Re-ask the question 
+
+2. Re-do the experiment 
+
+3. Re-analyse the data
+
+4. **Reproduce** the results
+
+
+???
+
+And finally, the strictly narrow sense of reproducibility is reproduce an analysis - using the exact same data, same methods and techniques.
+
+And it's essentially only the last type of replication that I'm talking about here. Sometimes these are also called **pure replications** or **close replications**, but whatever you want to call them, that is what I'm talking about. 
+
+Of course some of the principles of reproducibility apply to the broader levels as well, data has to be openly available if anyone is to reanalyse it with their own methods. And experimental methodology must also be documented transparently if anyone is going to replicate your experiment. 
+
+But the gist of reproducibility as understood here is ensuring that your results are reproducible using the same data and methods you used. 
+
+---
+
+# What is Reproducibility?
+
+* Reproducibility vs Replicability or Replication?
+
+* Replication: *"The confirmation of results and conclusions from one study obtained independently in another"*
+&lt;!-- .right[ (Jasny, Chin, Chong, et al., 2011)] --&gt;
+
+* Reproducibility: *"[T]he independent verification of prior findings"*
+&lt;!-- .right[(Santer, Wigley, and Taylor, 2011)] --&gt;
+**Levels of Replication :**
+
+1. Re-ask the question 
+
+2. Re-do the experiment 
+
+3. Re-analyse the data
+
+4. **Reproduce** the results
+
+Reproducible workflow: gathering -&gt; analysis -&gt; presentation 
+
+???
+So to be more concrete, we want to ensure that our whole research workflow, which starts with the gathering of the data, then the analysis and finally the presentation of the results, are reproducible. 
+
+---
+*Reproducibility means showing your work: *
+
+--
+
+ .right[(imgur user TVsJeff)]
+ 
+![Show your work *ad absurdum*](/home/mz/Dropbox/XtraWork/teaching/2019-07-rep-res-humanities-oxford//figures/imgur.jpg)
+
+???
+So the sort of reproducibility that I'm talking about is about "showing your work". And yes, that can sometimes be the most annoying thing in the world. As in this example here, where a user on imgur vented his annoyance at his maths teacher who wanted him to show his work by taking it to a really extreme conclusion. I'm not sure if you can see this very well, this starts with "Neurons travel through synapses, finger muscles move to grasp writing utensil" and this whole page is just to describe the work that went into writing his name on the homework. And apparently this is followed by 44 more pages like this one. 
+
+So obviously this is a bit of an extreme example, but my point is that honestly yes, ensuring your analysis is really reproducible can be quite annoying, and it can seem pointless and unnecessary.  
+
+BUT it is worth the hassle in the end. And it will be less of a hassle if you plan systematically on doing it from the start instead of thinking about it retrospecively and trying to fix it after the fact. 
+
+And furthermore that doing truly reproducible data analysis has become easier and easier with a variety of tools not only being available, but being accessible, free and relatively easy to use. 
+---
+
+# Why should research be reproducible?
+
+???
+So why would we want it to be reproducible?
+
+--
+
+`1.` For science
+
+--
+* opens claims to scrutiny
+
+???
+
+This is one way of distinguishing science---in the positivist sense anyway---from non-science. This is generally considered the ultimate standard for evaluating scientific claims: whether they can be verified through replication. 
+
+---
+
+# Why should research be reproducible?
+
+`1.` For science
+
+* opens claims to scrutiny
+
+* helps avoid duplication and encourage cumulation of knwoledge
+
+???
+
+As a way to further sumulative scientific knowledge, reproducible research cuts down on duplication of effort by allowing scientists to share data or procedures instead of them having to discover things that have already been done by others on their own. 
+
+---
+
+# Why should research be reproducible?
+
+`1.` For science
+
+* opens claims to scrutiny
+
+* helps avoid duplication and encourage cumulation of knwoledge
+
+`2.` For you. 
+
+???
+I cannot overstate this enough. Despite the sometimes large upfront investment itno learning the tools and setting up your work process, it is worth it even just for making your life a lot easier in the long run
+
+---
+
+# Why should research be reproducible?
+
+`1.` For science
+
+* opens claims to scrutiny
+
+* helps avoid duplication and encourage cumulation of knwoledge
+
+`2.` For you. 
+
+* forces you to develop better working habits
+
+???
+
+Better work habits mean you are more effective, better organised, produce higher quality work and fewer errors. You're also avoiding personal effort duplication and building your own knowledge base more effectively.
+
+---
+
+# Why should research be reproducible?
+
+`1.` For science
+
+* opens claims to scrutiny
+
+* helps avoid duplication and encourage cumulation of knwoledge
+
+`2.` For you. 
+
+* forces you to develop better working habits
+
+* makes changes and updates of your work easier
+
+???
+most research is an iterative process where you keep going back and rerunning parts of your analysis, not a linear one off. additionally you might want to get back to your research after several years have passed and update it with newly available data. reproducible research makes that so much easier. i'm sure we've all been in the position---i certainly have---of going through an old folder for a project of mine, scratching my head trying to figure out what i was trying to do. if you recognize yourself in that, you definitely need to apply some principles of reproducible research to your workflow. 
+
+---
+
+# Why should research be reproducible?
+
+`1.` For science
+
+* opens claims to scrutiny
+
+* helps avoid duplication and encourage cumulation of knwoledge
+
+`2.` For you. 
+
+* forces you to develop better working habits
+
+* makes changes and updates of your work easier
+
+* increases your research impact
+
+???
+How? Well your research will be more useful to more researchers than if it were not reproducible. It contains more information, it is more likely to be looked at and lead to other research, which means citations of your work. 
+
+---
+
+# Why should research be reproducible?
+
+`1.` For science
+
+* opens claims to scrutiny
+
+* helps avoid duplication and encourage cumulation of knwoledge
+
+`2.` For you. 
+
+* forces you to develop better working habits
+
+* makes changes and updates of your work easier
+
+* increases your research impact
+
+* enables easier teamwork
+
+???
+Making your work more accessible to colaborators makes it easier to build knowledge together. 
+
+--
+
+.right[(Gandrud, 2016)]
+
+???
+This outline is from a wonderful book by Christopher Gandrud on reproducible research with R and Rstudio, which I highly recommend as a great hands on introduction to the topic by the way. 
+
+---
+
+# Reproducibility in the Humanities?
+
+
+???
+
+So, I'm a social scientist. A demographer to be more precise, but anyway, the point is I don't really know much about the humanities. And yet I'm fine with telling you about reproducibility and why it's important, without having to know much about the field. 
+
+--
+
+* reproducibility is not limited to any branch of science
+
+???
+
+The thing is reproducibility isn't endemic or native to social sciences either. It is an ideal for all research, all scientific endeavour to strive towards. It distinguishes science from non science by opening claims to scrutiny. 
+
+As a guiding principle the idea of reproducible research has its stronghold in quantitative research. Research which uses numbers and statistical techniques to obtain results. 
+
+-- 
+
+* but focus is nevertheless on computational research
+
+???
+
+Many of the tools and techniques I will discuss today actually stem explicitly from the fields of computational research: they are tools that programmers and developers use themself. Their efficiency, especially when it comes to colaborative work, depends on being transparent, being able to show their work, being able to systematic about their workflow. 
+
+And these tools have been appropriated by quantitative scientists, including in the social sciences and increasingly so in the humanities. The methods of analysis are changing in the humanities as well, with more and more researchers using quantitative analysis in their studies. In this talk I will mainly focus on this sort of reproducibility: of the workflow for computational research including the gathering, analysis and presentation of results. 
+
+In this respect the humanities are no different from the social sciences or from the natural sciences. The same principles apply and for the most part the same tools. I will however as an aside say a bit about reproducibility in non-computational research, so in qualitative research.
+
+--
+
+* what about qualitative research?
+
+???
+
+Without getting into the philosophy of science too much, it is of course clear that both the sort of reproducibility and replicability that we defined earlier, are based on a positivist view of science. 
+
+Qualitative research does not necessarily follow that, but might be based on an interpretative research method where by definition the conditions of the study are impossible to recreate. 
+
+However this doesn't mean we have to revert to the sort of solipsism where only the author understands how the findings were achieved. 
+
+--
+
+* Transparency
+
+???
+
+Instead we should use the transparency of the research process to judge the rigour of qualitative research. 
+
+--
+
+    1. Production transparency
+    
+    2. Data transparency
+    
+    3. Analytic transparency
+
+  
+.right[(Moravcsik, 2014)]
+???
+
+Following Moravscik we can speak of three dimensions of transparency: 
+
+Production transparecny gives information on how the data was produced, gathered and collected. 
+
+Data transparency affords readers access to the data used to support the findings. 
+
+Analytic transparency gives readers detailed information on the methods of analysisused to interpret the data. 
+
+Now although these three types of transparency do not afford the full reproducibility in the narrow sense we discuss above, they do provide enough information to fairly evaluate a study by.
+
+So while this information might not make the research reproducible in the narrow sense of the word, it is the necessary requirement for reproducibility of all reseach. 
+
+--
+
+* *cf.* [Annotation for Transparent Inquiry](https://qdr.syr.edu/ati)
+
+???
+Furthermore many of the principles that I want to discuss now, still apply to qualitative research, although perhaps not all of the tools. With regard to tools though I would suggest you look at the Annotation for Transparent Inquiry which is an approach to presenting qualitative research in a more transparent way by allowing rich annotations and linking of sources and citations. 
+
+---
+
+# Why Tools matter
+
+???
+
+Before we move to discuss the tools for resproducible research, I want to give a quick example of why tools are so important. And I'll try to not make this a militant anti-Excel screed, but instead a thinly veiled anti-Excel screed. 
+
+
+SO I wanted to mention a rather famous story in the history of reproducible research, this one is from the field of macroeconomics. So Carmen Reinhart and Kenneth Rogoff wrote a rather famous paper in 2010 seemingly proving that high levels of GDP suppresses economic growth in countries. Now this was just after the economic crisis and this paper became quite popular as a means of arguing for austerity measures.
+--
+
+&lt;div class="figure"&gt;
+&lt;img src="/home/mz/Dropbox/XtraWork/teaching/2019-07-rep-res-humanities-oxford//figures/rrexcel.png" alt="Encouraging errors" height="70%" /&gt;
+&lt;p class="caption"&gt;Encouraging errors&lt;/p&gt;
+&lt;/div&gt;
+???
+
+They had not made their data or their analysis freely available, but an american grad student Thomas Herndon was persistent enough in emailing them, that Carmen finally did send him the spreadsheet they used. 
+
+And when he looked at it, he found this, the average calculated for this column here, for countries with a debt ratio of 90 percent or more - the average was not calculated for the whole column, but missed five cells at the bottom there.
+
+Which is what happens in Excel. I'm sure you've all done it, dragged across some cells without much control or precision. I know I've definitely done it. 
+
+In fact this error - although it got most of the press - didn't actually change the results dramatically, but Herdon was able, once he got hold of the spreadsheet, to also understand how the analysis was conducted and he and many other people agreed that the method of weighting the data was very unorthodox. 
+
+---
+
+
+# Why Tools matter
+
+&lt;div class="figure"&gt;
+&lt;img src="/home/mz/Dropbox/XtraWork/teaching/2019-07-rep-res-humanities-oxford//figures/rrexcel.png" alt="Encouraging errors" height="70%" /&gt;
+&lt;p class="caption"&gt;Encouraging errors&lt;/p&gt;
+&lt;/div&gt;
+
+???
+
+Because effectively they averaged the growth rates regardless of how long they lasted. so the New Zealand growthrate here, -7.9 only lasted a year, but has the same weight as Greece's for example, which I don't know how long it lasted, but I'm pretty sure their debt ratio has been pretty bad for a long time.
+
+Anyway, I just thought I'd mention this story as one about the importance of being transparent and open with your data and analysis, and partly as a cautionary tale about using Excel. Or I should say spreadsheet programmes in general. 
+
+Look, I know for a lot of you Excel in a super comfortable go-to programme that gets the job done. And I do think it has its place. But I would very strongly advise against using it in any of your research. But I won't argue too hard against using spreadsheets for prototyping. 
+
+
+--
+ &lt;!-- (Jackson, 2012) --&gt;
+ 
+ 
+ &lt;!-- (Hong, Crick, Gent, Kotthoff, and Takeda, 2015) --&gt;
+---
+
+# References
+
+[1] C. Gandrud. _Reproducible research with R and R studio_.
+Chapman and Hall/CRC, 2016.
+
+[2] N. P. C. Hong, T. Crick, I. P. Gent, et al. "Top tips to make
+your research irreproducible". In: _arXiv preprint
+arXiv:1504.00062_ (2015).
+
+[3] M. Jackson. _How to cite and describe software_. &lt;URL:
+https://software.ac.uk/how-cite-software&gt;. [Online; accessed
+22.7.2019]. 2012.
+
+[4] B. R. Jasny, G. Chin, L. Chong, et al. "Again, and Again, and
+Again..." In: _Science_ 334.6060 (2011), pp. 1225-1225. DOI:
+[10.1126/science.334.6060.1225](https://doi.org/10.1126%2Fscience.334.6060.1225).
+
+[5] A. Moravcsik. "Transparency: The Revolution in Qualitative
+Research". In: _PS: Political Science &amp; Politics_ 47.1 (2014), p.
+48–53. DOI:
+[10.1017/S1049096513001789](https://doi.org/10.1017%2FS1049096513001789).
+
+[6] B. D. Santer, T. M. L. Wigley, and K. E. Taylor. "The
+Reproducibility of Observational Estimates of Surface and
+Atmospheric Temperature Change". In: _Science_ 334.6060 (2011),
+pp. 1232-1233. ISSN: 0036-8075. DOI:
+[10.1126/science.1216273](https://doi.org/10.1126%2Fscience.1216273).
+
+---
+
+# Thank you!
+
+&lt;img src="/home/mz/Dropbox/XtraWork/teaching/2019-07-rep-res-humanities-oxford/figures/qr-code.png" width="400px" /&gt;
+
+GitHub repository for this presentation:
+
+[GitHub repository for this presentation: https://github.com/majazaloznik/2019-07-rep-res-humanities-oxford"](https://github.com/majazaloznik/2019-07-rep-res-humanities-oxford")
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();</script>
+
+<script>
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

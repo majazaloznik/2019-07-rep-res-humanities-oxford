@@ -13,7 +13,7 @@ output:
 * So I'll remove the dot.png from the makefile, that's the only place it is used anyway.. 
 * to demo the idea i can still use an old example. 
 * oh, wow actually there's a command called `dot` in shell that does about 7 steps of my old R script in one. I've changed to that!
-* OK, this now works, I need to update the template!
+* OK, this now works, I need to update the template! todo. 
 So this is what my makefile looks like graphically at the minute:
 
 ```{r, echo = FALSE, out.width='100%'}
@@ -23,3 +23,17 @@ knitr::include_graphics(paste0(rprojroot::find_root("Makefile"),"/figures/make.p
 OK, now let's have a look at `packrat`. 
 * run packrat::init()
 * initialization complete!
+
+# Tuesday 23.7.2019
+
+Oh dear lord, couldn't get one of the images (phd comics) to register the out.widht parameter.. turns out [https://github.com/yihui/knitr/issues/1477] that you need to set both height and width if the image is too small. Works now.
+* OK, keep writing notes
+* actually makes more sense to just go straight to the presentation. Copy outline from teh SAGE one in March.
+* run with xaringan
+* this means updating makefile as well, with rmd2xari command. 
+* todo: update the template. 
+* OK, preparing slides and writing notes, and it turns out - i've had this problem before i think - that when i have too many notes for a slide, i cannot read them anymore, they disappear off the screen. The solution is to break it up into several slides that seemingly overlay, so look like incremental bullets. 
+* error in `papers$key` was produced because i once forgot to pu thte bibliography argument in the `Cite()` call, and took me forever to figure out. 
+* try to get small font so i'd be able to fit all references on one page, but seems too complicated right now. looks liek requires my-theme.css, but not sure where to put it.. todo. 
+* make qr code for repo for last page
+

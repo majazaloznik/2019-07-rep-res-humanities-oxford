@@ -16,7 +16,7 @@ DT/D:= $(DATA)/dictionaries
 DOC:= $(DIR)/docs
 JRN:= $(DOC)/journals
 RPRT:= $(DOC)/reports
-
+PREZ:= $(DOC)/presentations
 # FILES #######################################################################
 # all interim data filee
 DT/I/.rds :=  $(DT/I)/*.rds
@@ -60,6 +60,14 @@ define rmd2html
 	quiet = TRUE )"
 endef 
 
+# recipe to knit xaringan from first prerequisite
+define rmd2xari
+	@echo creating the $(@F) file by knitting it in R.---------------------------
+  Rscript -e "suppressWarnings(suppressMessages(require(rmarkdown))); \
+	render('$<', output_dir = '$(@D)', output_format = 'xaringan::moon_reader',\
+	quiet = TRUE )"
+endef 
+
 # recipe run latex with bibtex
 define tex2dvi
 	latex -interaction=nonstopmode --output-directory=$(@D) --aux-directory=$(@D) $< 
@@ -81,7 +89,7 @@ endef
 # DEPENDENCIES   ##############################################################
 ###############################################################################
 
-all: journal readme dot notes
+all: journal readme dot notes presentation
 
 .PHONY: all
 
@@ -117,6 +125,13 @@ notes:  $(JRN)/notes.pdf
 $(JRN)/notes.pdf:  $(JRN)/notes.Rmd $(DT/D)/lit.bib
 	$(rmd2pdf)
 
+
+# presentations from Rmds ###########################################################
+presentation:  $(PREZ)/2019-07-25-RepRes-Oxford.html
+
+# presentation (with bibliography) render to  html
+$(PREZ)/2019-07-25-RepRes-Oxford.html: $(PREZ)/2019-07-25-RepRes-Oxford.Rmd $(DT/D)/lit.bib
+	$(rmd2xari)
 
 # README from Rmds #############################################################
 readme: README.html

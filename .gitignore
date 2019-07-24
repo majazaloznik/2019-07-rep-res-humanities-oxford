@@ -3,10 +3,5 @@
 .RData
 .Ruserdata
 
-/data
-/results
-/data-sources
-/docs
-/figures
-packrat/lib*/
 packrat/src/
+packrat/lib*/
