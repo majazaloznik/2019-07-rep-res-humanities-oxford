@@ -1099,7 +1099,11 @@ Actually a good rule is to always try to write your code as if comments didn't e
 
 3. comments
 
-4. session information -- `packrat`
+4. citing software
+
+5. session information -- `packrat`
+
+???
 
 ---
 
@@ -1225,6 +1229,19 @@ Publishers and reviewers might take issue with the citing of software, however t
 
 If there is no DOI, use urls, even though MLA recommends against it (becuase of breakage). It is still better than nothing.
 
+---
+
+# Ensuring *Consistency* and *documentation*
+
+1. style guides
+
+2. analysis journals
+
+3. comments
+
+4. citing software
+
+5. session information -- `packrat`
 
 ---
 

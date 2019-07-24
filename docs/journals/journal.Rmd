@@ -44,7 +44,7 @@ Oh dear lord, couldn't get one of the images (phd comics) to register the out.wi
 * packrat seems to automatically update my .gitignore file and delete /packrat/src/ which i am trying to ignore. this is fixed by going into packrat.opts and changing `vcs.ignore.src: TRUE`
 * sth bad happened with the fonts. maybe because i'm offline? hopefully!
 * Instructions for github pages: 
-* copy intex.htlm file into `docs` folder, and change the link address. follow the pattern i.e. the `docs` folder is skipped.
+* copy intex.htlm file into `docs` folder, and change the link address. follow the pattern i.e. the `docs` folder is skipped. careful!there will be no error if you get this wrong.. 
 * Then go to the github repo and setup github pages: Settings - Github Pages- source: master branch/docs folder
 * but i think this only works if the figures are in the same folder? 
 * wait a second and see. 
