@@ -41,3 +41,4 @@ Oh dear lord, couldn't get one of the images (phd comics) to register the out.wi
 # Wednesday 24.7.2019
 
 * packrat seems to automatically update my .gitignore file and delete /packrat/src/ which i am trying to ignore. this is fixed by going into packrat.opts and changing `vcs.ignore.src: TRUE`
+* sth bad happened with the fonts. maybe because i'm offline? hopefully!
