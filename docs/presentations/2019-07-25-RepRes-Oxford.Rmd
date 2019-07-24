@@ -6,7 +6,7 @@ date: "25 July 2019"
 output:
   xaringan::moon_reader:
     lib_dir: libs
-    css: ["my-css.css", default-fonts]
+    css: [default-fonts, "my-css.css"]
     nature:
       highlightStyle: github
       countIncrementalSlides: false
@@ -241,7 +241,7 @@ So to be more concrete, we want to ensure that our whole research workflow, whic
  .right[(imgur user TVsJeff)]
 
 ```{r imgur, echo=FALSE, fig.cap="Show your work *ad absurdum*", fig.height=5}
-knitr::include_graphics(here::here("/figures/imgur.jpg"))
+knitr::include_graphics("figures/imgur.jpg")
 ```
 
 ???
@@ -480,9 +480,8 @@ Before we move to discuss the tools for resproducible research, I want to give a
 
 SO I wanted to mention a rather famous story in the history of reproducible research, this one is from the field of macroeconomics. So Carmen Reinhart and Kenneth Rogoff wrote a rather famous paper in 2010 seemingly proving that high levels of GDP suppresses economic growth in countries. Now this was just after the economic crisis and this paper became quite popular as a means of arguing for austerity measures.
 --
-
-```{r rrexcel2, echo=FALSE, fig.cap="Encouraging errors", out.widht = '70%', out.height='70%'}
-knitr::include_graphics(here::here("/figures/rrexcel.png"))
+```{r rrexcel1, echo=FALSE, fig.cap="Encouraging errors", out.widht = '70%', out.height='70%'}
+knitr::include_graphics("figures/rrexcel.png")
 ```
 ???
 
@@ -494,24 +493,21 @@ Which is what happens in Excel. I'm sure you've all done it, dragged across some
 
 In fact this error - although it got most of the press - didn't actually change the results dramatically, but Herdon was able, once he got hold of the spreadsheet, to also understand how the analysis was conducted and he and many other people agreed that the method of weighting the data was very unorthodox.
 
-Oh, also there was the story recently about the genetic analyses being wrong because some gene names were misinterpreted by Excel as dates. SO there are gene names such as SEPT2, which got routinely transformed into second of september.
-
-
 
 ---
 
-
 # Why Tools matter
 
-```{r rrexcel, echo=FALSE, fig.cap="Encouraging errors", out.widht = '70%', out.height='70%'}
-knitr::include_graphics(here::here("/figures/rrexcel.png"))
+```{r rrexcel2, echo=FALSE, fig.cap="Encouraging errors", out.widht = '70%', out.height='70%'}
+knitr::include_graphics("figures/rrexcel.png")
 ```
-
 ???
 
 Because effectively they averaged the growth rates regardless of how long they lasted. so the New Zealand growthrate here, -7.9 only lasted a year, but has the same weight as Greece's for example, which I don't know how long it lasted, but I'm pretty sure their debt ratio has been pretty bad for a long time.
 
 Anyway, I just thought I'd mention this story as one about the importance of being transparent and open with your data and analysis, and partly as a cautionary tale about using Excel. Or I should say spreadsheet programmes in general.
+
+Oh, also there was the story recently about the genetic analyses being wrong because some gene names were misinterpreted by Excel as dates. SO there are gene names such as SEPT2, which got routinely transformed into second of september.
 
 Look, I know for a lot of you Excel in a super comfortable go-to programme that gets the job done. And I do think it has its place. But I would very strongly advise against using it in any of your research. But I won't argue too hard against using spreadsheets for prototyping.
 
@@ -869,7 +865,7 @@ But there are also second best solutions that should not be scoffed at. If you a
 # Version control---git and GitHub
 
 ```{r git, echo=FALSE,fig.cap= "Piled higher and Deeper", out.width = "300px"}
-knitr::include_graphics(here::here("figures/final-doc.png"))
+knitr::include_graphics("figures/final-doc.png")
 ```
 
 ???
@@ -1283,31 +1279,50 @@ The idea is that you knit together the code and the explanatory text, going beyo
   * markdown, Rmarkdown
 
 ???
+
 In order to be able to do that you need to be able to combine the code with the formatted text in a single text file, which means you cannot use for example Word to format your text. 
 
 Instead you have to use a markup language. Which is basically a system for annotating text with formatting. LaTeX is a well known and very powerful markup language, it is in fact the one that Donald Knuth invented so to speak, html is also a markup language. A more user friendly markup language is markdown and the R flavour of markdown which is Rmarkdown. 
 
+so Markdown is a markup language, but the whole idea of it is to make it really easy to use, and really easy to read - so instead of latex html which for example has loads of tags and reading it directly is pretty cumbersome, markdown is actually very unobtrusive.
 
---- 
+---
+
 # Literate programming---`knitr` and markup languages
 
-???
-
-so Markdown is a markup language, but the whole idea of it is to make it really easy to use, and really easy to read - so instead of latex html which for example has loads of tags and reading it directly is pretty cumbersome, markdown is actually very unobtrusive.
---
-
-```{r mark1, echo=FALSE,  out.width = "400px"}
-knitr::include_graphics(here::here("figures/html.png"))
+```{r mark1, echo=FALSE,fig.cap = "rmarkdown", fig.height=5}
+knitr::include_graphics("figures/markdown.png")
 ```
 
 ???
 
+
 So just to give you a quick flavour of how it works, here we have on the left hand side some text formatted using Markdown, we see we can have different level headings, the usuall formatting italic, bold etcetera, bulleted lists, enumerated lists, tables. And here on the right is how this would be viewed in your browser. So maybe it doesn't look supper pretty - you will just have to learn how to use Latex if you want that - but it definitely does the job and is incredibly simple to learn. 
+
+---
+
+# Literate programming---`knitr` and markup languages
+
+```{r mark2, echo=FALSE, fig.cap = "rmarkdown", fig.height=5}
+knitr::include_graphics(here::here("/figures/html.png"))
+```
+
+???
 
 knitting your markup language of choice and your code together allows you to produce an output document, be it a pdf report, a presentation, even a word document directly from one human readable text file. And that is the essence of literate programming. 
 
-
 And you can appreciate how this is relevant from a reproducibility point of view. If your whole analysis is knitted together like that it means if something in the input data changes, you can automatically update the whole report by recompiling the report from this one file. 
+
+Let me just give you a quick demo now. 
+
+So here I've got the same file as before, but it continues. So, let's see what is going on. This is where I start doing some data analysis, and describing what is going on along the way. Like what the data is and where I got it. And now comes the first code chunk: this is R code, that we could run on its own. But instead we will knit it together with the text, to produce a nice report of everything that went on in this analysis. Next we've got some inline code, this is pretty neat, so the number of rows in the data set, and the average sepal lenght will be calculated and knitted directly inline with the text. Next we've got a little scatterplot, and then anotherone pretty much the same, but with the linear regression line added as well. Now here I may not really want to repeat the code, because it's pretty much the same, so instead I can turn it off. 
+
+Anyway, let's try this out now and see what happens when we knit to HTML: There, a perfectly knitted report. And that's not all, actually we can also knit to pdf. Which looks way nicer in my view. And if you really really insist, you can even knit to word. 
+
+And that is this little button up here, that says publish. Actually it says republish, because I've already been playing around with this one. 
+
+But let's try it anyway. So what is about to happen is R is going to take us to RPubs, a web publishing service the wonderful people of RStudio started a few years ago. So this is a free web service, all you need to do is sign up for an account and you're there. Whenever you want to publish a knitted html document you can do so directly from RStudio via this handy little button. You can then share the link with whomever you want to share your work with. So this is a dissemination tool, not collaboration, but still, it's pretty neat. But be warned though, everyhing you post up here is completely public. So unlike github you cannot have a private account. But also unlike github you cannot actually search RPubs, you can only look at the most recently uploaded ones and explore from there. Although I think you can just use google search actually. For example we can see what else I've got up here, and here is an example I did for another talk, where I was showing some maps I'd made and was asked my someone in the audience afterwards if they could have my code
+
 
 
  <!-- `r Citep(myBib, "jacksonNodate")` -->
