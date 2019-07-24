@@ -6,7 +6,7 @@ date: "25 July 2019"
 output:
   xaringan::moon_reader:
     lib_dir: libs
-    css: [default, default-fonts, "my-theme.css"]
+    css: ["my-css.css", default-fonts]
     nature:
       highlightStyle: github
       countIncrementalSlides: false
@@ -79,6 +79,14 @@ Now for the gist of the talk, how do we apply these principles and which tools d
 So within the how we will discuss the principles which underpin reproducibility in practice such as open data, open research and transparency, and also some of the tools that make this process easier to manage and help you setup a reproducible workflow. 
 
 Again this refers to all the steps in the research process from data gathering, analysis to presentation and disemmenation. I will discuss in particular R and Rstudio, git and make and knitr. 
+
+I should add here that I have previously given a version of this talk that was called more along the lines of reproducible research with R and Rstudio. I have substantially rewritten it so the focus in a lot less on the tools, but they remeain an important part of it, since it would just be too abstract otherwise. 
+
+I have also not gone in the other direction of broadening the focus to include all possible alternative tools. This is partly because I don't know them well from personal experience, and partly because I truly think R and Rstudio are one of the strongest reproducible research environments available. But at least if you are a python user you are in good hands and can set up a workflow that is equivalent. 
+
+But even if you are not an R user, and never intend to become one, I think you should still get something useful out of it, perhaps seeing an implementation of one of the principles might spur you to find an analagous solution that applies better to your setup. 
+
+
   
 ---
 
@@ -481,6 +489,10 @@ Which is what happens in Excel. I'm sure you've all done it, dragged across some
 
 In fact this error - although it got most of the press - didn't actually change the results dramatically, but Herdon was able, once he got hold of the spreadsheet, to also understand how the analysis was conducted and he and many other people agreed that the method of weighting the data was very unorthodox. 
 
+Oh, also there was the story recently about the genetic analyses being wrong because some gene names were misinterpreted by Excel as dates. SO there are gene names such as SEPT2, which got routinely transformed into second of september.
+
+
+
 ---
 
 
@@ -498,8 +510,398 @@ Anyway, I just thought I'd mention this story as one about the importance of bei
 
 Look, I know for a lot of you Excel in a super comfortable go-to programme that gets the job done. And I do think it has its place. But I would very strongly advise against using it in any of your research. But I won't argue too hard against using spreadsheets for prototyping. 
 
+---
 
---
+# Principles and Tools for Reproducible Research
+
+.left-column[
+  * *Scripting* your analysis 
+]
+.right-column[
+  * `R` (but also e.g. python..)
+
+]
+
+???
+ One of the most important principles that underpuns analytic transparency is Scripting. 
+ 
+ s
+---
+
+# Principles and Tools for Reproducible Research
+
+.left-column[
+* *Scripting* your analysis 
+
+* *Data Transparency* or *Open Data*
+]
+.right-column[
+* `R` (but also e.g. python..)
+
+* fighsare, institutional repositories..
+]
+
+???
+Having your data openly available to other researchers, both ensuring the data sources are adequately described, but also the datasets produced by your analysis made available in stable format.
+
+---
+
+# Principles and Tools for Reproducible Research
+
+.left-column[
+* *Scripting* your analysis 
+
+* *Data Transparency* or *Open Data*
+
+
+* *Version Control* 
+]
+.right-column[
+* `R` (but also e.g. python..)
+
+* fighsare, institutional repositories..
+
+* git and GitHub 
+]
+
+???
+Next we have version control. Version control is a management system that is used to keep track of changes in your files. It is particularly important if your research process is not completely linear. And we know it usually isn't. Version control also provides some element of backup and cloud storage, but this isn't its primary purpose. 
+
+---
+
+# Principles and Tools for Reproducible Research
+
+.left-column[
+* *Scripting* your analysis 
+
+* *Data Transparency* or *Open Data*
+
+* *Version Control* 
+
+* *Modularity* and *segmentation*
+]
+.right-column[
+* `R` (but also e.g. python..)
+
+* fighsare, institutional repositories..
+
+* git and GitHub
+
+* GNU Make
+]
+
+???
+The next principle is to organise your file structure and your whole workfolw into modular files and describing how the files are connected together in a systematic way. GNU Make in particular is a valuable tool that allows you to execute your whole analysis at once, while keeping track of changes to individual files. 
+
+---
+
+# Principles and Tools for Reproducible Research
+
+.left-column[
+* *Scripting* your analysis 
+
+* *Data Transparency* or *Open Data*
+
+* *Version Control* 
+
+* *Modularity* and *segmentation*
+
+* *Literate programming*
+]
+.right-column[
+* `R` (but also e.g. python..)
+
+* fighsare, institutional repositories..
+
+* git and GitHub
+
+* GNU make
+
+* `knitr` & markup languages
+]
+
+???
+With literate programming we are already in the presentation/publication/dissemenation side of reproducible research, the idea here being that you can combine your text, the formatting and your analytic code in one human readable document that produces your desired output. 
+
+---
+
+# Principles and Tools for Reproducible Research
+
+.left-column[
+* *Scripting* your analysis 
+
+* *Data Transparency* or *Open Data*
+
+* *Version Control* 
+
+* *Modularity* and *segmentation*
+
+* *Literate programming*
+
+* *Consistency* and *documentation*
+]
+.right-column[
+* `R` (but also e.g. python..)
+
+* fighsare, institutional repositories..
+
+* git and GitHub
+
+* GNU Make
+
+* `knitr` & markup languages
+
+* style guides, analysis journals, comments, `packrat`
+]
+
+???
+
+Finally the more generic principles of consistency and documentation, don't really have any specific tools, but are usually proscribed to some extent by coding style guides. By consistency I mean e.g. consistent file and variable naming conventions.. And by documentation everything from code comments, variable descriptions and metadata, as well as workprocess documentation in particular citing the software used. `packrat` is additionally an R package that allows you to create a portable and isolated project that cannot be "broken" by future updates or changes. 
+
+
+---
+
+# Principles and Tools for Reproducible Research
+
+.left-column[
+* *Scripting* your analysis 
+
+* *Data Transparency* or *Open Data*
+
+* *Version Control* 
+
+* *Modularity* and *segmentation*
+
+* *Literate programming*
+
+* *Consistency* and *documentation*
+
+* *Convenience*
+]
+.right-column[
+* `R` (but also e.g. python..)
+
+* fighsare, institutional repositories..
+
+* git and GitHub
+
+* GNU Make
+
+* `knitr` & markup languages
+
+* style guides, analysis journals, comments, `packrat`
+
+* **RStudio**
+]
+
+???
+
+I kind of made this last one up, convenience as a principle of Reproducible research.. it obviously isn't a principle or reproducibility, but it is a principle of mine.. The reason I added it here is because of RStudio. Namely RStudio is what is technically called an integrated development environment, for using R, but it now includes capabilities for integrating all the tools mentioned above and in many cases making them a lot simpler to use than they would have been otherwise. 
+
+---
+
+# R
+
+---
+
+# figshare and other repositories
+
+---
+
+# git and GitHub
+
+```{r git, echo=FALSE,  fig.cap= "https://xkcd.com/1597/", out.width = "300px"}
+knitr::include_graphics(here::here("figures/git.png"))
+```
+
+---
+
+# GNU Make
+
+---
+
+# `knitr` and markup languages
+
+---
+
+# Ensuring *Consistency* and *documentation*
+
+1. style guides
+
+---
+
+# Ensuring *Consistency* and *documentation*
+
+1. style guides
+
+2. analysis journals
+
+---
+
+# Ensuring *Consistency* and *documentation*
+
+1. style guides
+
+2. analysis journals
+
+3. comments
+
+
+---
+
+# Ensuring *Consistency* and *documentation*
+
+1. style guides
+
+2. analysis journals
+
+3. comments
+
+4. software citations
+
+
+---
+
+# Ensuring *Consistency* and *documentation*
+
+1. style guides
+
+2. analysis journals
+
+3. comments
+
+4. software citations
+
+5. `pacckrat`
+
+---
+
+# How to cite software
+
+* Which software should be cited?
+
+  * Critical and/or novel contribution. 
+  
+???
+
+One way or another it is highly likely that software played an important role in you producing your research. This contribution should be acknowledged. Now this doesn't mean you have to make sure everyone knows you used Microsoft Word to write your paper, a good rule of thumb is to ask yourself if the software contributed critically to your research and/or if it provided something novel. This is the recommendation of the British Software sustainability insititute. If this feels a bit ambiguous, I would suggest you err on the side of citing rather than not. 
+
+For example you might think it silly to acknowledge that you used Microsoft Excel to do your analysis, but that is only if you thing it the software is faultless and your analysis would have produced the exact same results in any spreadhseet programme. But that may not be true. Excel--not to pick on any specific programme--but it has a bunch of quirks that are specific to it, you might even call them bugs. And they could very well affect your analysis, which counts as having a critical contribtution. 
+
+For example Excel treats 1900 as a leap year. This is due to some historical reasons, to make it compatible with IBM's Lotus-1-2-3 if you're old enough to remember it. Anyway, Microsoft aknowledges that this means "The WEEKDAY function returns incorrect values for dates before March 1, 1900. Because most users do not use dates before March 1, 1900, this problem is rare."
+
+But more generally you should cite any software that impacts upon the results, includes numerical modelling or simulations, any algorithmic evaluations or research using software that does some form of automated analysis e.g. image analysis or optical character recognition. 
+
+---
+
+# How to cite software
+
+* Which software should be cited?
+
+  * Critical and/or novel contribution. 
+  * sometimes the licence requires you cite it
+  
+???
+
+Sometimes the decision is made for you, because the licence for the software, that you have of course carefully read, so you know this, but sometimes the licence explicitly requires you cite it.  
+
+---
+
+# How to cite software
+
+* Which software should be cited?
+
+  * Critical and/or novel contribution. 
+  * sometimes the licence requires you cite it
+  
+* How should it be cited?
+
+  * find your citation style's examples
+
+???
+
+All the main citation styles have examples of how to cite software. For example MLA suggests: 
+
+
+And you should be able to look up examples for your prefered style. Whatever you choose though, make sure you include the version of the software. The idea is for you to be transparent about how your results were produced and allow someone else to replicate them, and software versions could play a role here. 
+
+Additionally most software developers will have a suggested citation format. 
+
+
+---
+
+# How to cite software
+
+* Which software should be cited?
+
+  * Critical and/or novel contribution. 
+  * sometimes the licence requires you cite it
+  
+* How should it be cited?
+
+  * find your citation style's examples
+  * do not use cite associated papers instead!
+  
+???
+Sometimes it seems more straightforward to cite the associated paper for a programme instead of the software itself. It fits the format we're used to, I guess it's always nicer to cite a person than an institution or company. You should avoid doing that. Always cite the software explicitly. If the associated paper was substatnively useful in your analysis, then by all means cite it as well, additionally, but not instead. 
+
+Several reasons for this: not all software has associated journal articles. Also an article is not specific to the version you were using, so does not serve to enhance reproducibility in that way. 
+
+
+---
+
+# How to cite software
+
+* Which software should be cited?
+
+  * Critical and/or novel contribution. 
+  * sometimes the licence requires you cite it
+  
+* How should it be cited?
+
+  * find your citation style's examples
+  * do not use cite associated papers instead!
+  * if there is a DOI, use it!
+  
+???
+
+If the software you are using has a DOI, then use it! Use it even at the expense of a url. Because DOIs are perseistent and urls are not. If you cite the DOI in its url form with the resolver service url as its prefix, for example like this http://dx.doi.org/NNNN,then it will work like a link and lead to the source, even if it has moved in the meantime. 
+ 
+ 
+---
+
+# How to cite software
+
+* Which software should be cited?
+
+  * Critical and/or novel contribution. 
+  * sometimes the licence requires you cite it
+  
+* How should it be cited?
+
+  * find your citation style's examples
+  * do not use cite associated papers instead!
+  * if there is a DOI, use it!
+  
+* Where should you cite it?
+
+  * if cannot cite in references then footnotes are second best option
+  * or methods section or appendix or supplementary materials, as long as it is there!
+ 
+ .right[`r Citep(myBib, "jacksonNodate")`]
+ 
+
+???
+
+Publishers and reviewers might take issue with the citing of software, however that sort of attitide is hopefully becoming a thing of the past. If you were to receive pushback the alternative is always to include the citation information in a footnote or otherwise stated in the methods section. From the point of view of reproducibility, the important thing is the information is accessible to the reader. However from the point of view of the authors, especially if they have mandated citation in the licence, that may be too little. 
+
+
+If there is no DOI, use urls, even though MLA recommends against it (becuase of breakage). It is still better than nothing.
+
+
+
+
+
  <!-- `r Citep(myBib, "jacksonNodate")` -->
  
  

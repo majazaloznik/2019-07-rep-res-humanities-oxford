@@ -4,24 +4,8 @@ output:
   pdf_document: default
 bibliography: ..\/..\/data\/dictionaries\/lit.bib
 ---
-# Reproducibility--what does it even mean?
 
 
-# reproducibility in the humanities
-
-
-# Reproducibility in Qualitative Research
-
-
-
-
-
-
-## open data
-
-## open analysis
-
-## licences
 
 
 ## packrat
@@ -29,7 +13,7 @@ bibliography: ..\/..\/data\/dictionaries\/lit.bib
 Reproducible package manamement for R. Makes your R projects reproducible by making them 
 
 * **isolated**: installing other packages won't break your project
-* **portable**: easy to share, even cross platform
+* **portable**: easy to share , even cross platform
 * **reproducible**: because it records the exact versions of the packages your project depends on
 
 Each project has its own package library. 

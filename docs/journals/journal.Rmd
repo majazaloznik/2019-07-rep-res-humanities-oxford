@@ -36,4 +36,6 @@ Oh dear lord, couldn't get one of the images (phd comics) to register the out.wi
 * error in `papers$key` was produced because i once forgot to pu thte bibliography argument in the `Cite()` call, and took me forever to figure out. 
 * try to get small font so i'd be able to fit all references on one page, but seems too complicated right now. looks liek requires my-theme.css, but not sure where to put it.. todo. 
 * make qr code for repo for last page
+* change two column setup in css by copying the whole default one to my-css, and placing it in the same folder as the .Rmd file. 
+
 
