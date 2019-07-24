@@ -21,6 +21,7 @@ knitr::include_graphics(paste0(rprojroot::find_root("Makefile"),"/figures/make.p
 ```
 
 OK, now let's have a look at `packrat`. 
+
 * run packrat::init()
 * initialization complete!
 

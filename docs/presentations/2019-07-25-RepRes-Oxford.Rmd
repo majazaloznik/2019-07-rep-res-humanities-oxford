@@ -28,7 +28,7 @@ myBib <- ReadBib(here::here("data/dictionaries/lit.bib"), check = FALSE)
 
 --
 
-* ### Reproducibility: *What?*
+`1.` ### Reproducibility: *What?*
 
 
 ???
@@ -36,7 +36,7 @@ myBib <- ReadBib(here::here("data/dictionaries/lit.bib"), check = FALSE)
 So first of all we should try to get on the same playing field, I want to briefly talk about what Reproducibility is, what we mean by reproducible research. 
 --
 
-* ### Reproducibility: *Why?*
+`2.` ### Reproducibility: *Why?*
 
 ???
 
@@ -44,7 +44,7 @@ Next i will talk about WHY reproducible research is important, why it should be 
 
 --
 
-* ### Reproducibility: *Where?*
+`3.` ### Reproducibility: *Where?*
 
 
 ???
@@ -54,16 +54,16 @@ By where I mean "in the humanities", so I'll briefly touch on how we think about
 ---
 # Outline of this talk
 
-1. ### Reproducibility: *What?*
+`1.` ### Reproducibility: *What?*
 
 
-2. ### Reproducibility: *Why?*
+`2.` ### Reproducibility: *Why?*
 
 
-3. ### Reproducibility: *Where?*
+`3.` ### Reproducibility: *Where?*
 
 
-4.  ### Reproducibllity: *How?*
+`4.`  ### Reproducibllity: *How?*
 
 ???
 
@@ -1039,6 +1039,16 @@ There is also a more sinister aspect to this - as you would expect with somethin
 
 1. style guides
 
+???
+Whatever your scripting language of choice is, it is a good idea to follow some sort of style guide. This will make your life easier and the lives of anyone who tries to read your code after you. 
+
+The will usually include information such as how to format and indent your code for greater readability, naming conventions for variables and files, and loads of other things you have not thought of yourself. 
+
+You don't have to follow one blindly, but at least have a look and deelop your own one and stick to it. Some choices may seem purely aesthetic, but even if so, they increase the readability and understandability of your code and that makes it more reproducible. 
+
+When it comes to R there is the google R style guide and Hadley Wickham's R style guide which are the two most popular ones.
+
+
 ---
 
 # Ensuring *Consistency* and *documentation*
@@ -1046,6 +1056,14 @@ There is also a more sinister aspect to this - as you would expect with somethin
 1. style guides
 
 2. analysis journals
+
+???
+
+This is very personal I guess. My journals are usually a mix of steps i've taken and explanations to my future self why, and cursing when stuff doesn't work. I often go back to a project's journal because I remember I got something to work in that project and I look to the journal for instructions. Unfortunately I am often disapointed.. 
+
+So again, this is a work in progress, but you can always do better in docupenting the steps you took and the reasons you took them.
+
+For me my journal lives in the documentation folder and I write it in markdown and knit it to pdf. I also include the diagramme of the makefile in there for a quick overview of the project. 
 
 ---
 
@@ -1057,6 +1075,19 @@ There is also a more sinister aspect to this - as you would expect with somethin
 
 3. comments
 
+???
+
+Next we have comments in your code. 
+
+Now commenting is a tricky one to talk about, it's difficult to set any rules about it, and it really depends on the person. 
+
+My experience is basically that everyone including me, does not comment nearly enough. But it depends on your coding style as well. If you have  a lovely coding style and write beautiful code, then you might be able to claim the code is so perfectly self-explanatory it does not need any extra comments. 
+
+ut more often than not that will not be the case. For the sake of anyone who may try to read your code after you - and don't forget, that mainly includes a future version of yourself, you really want to do them a favour and comment your code liberally. 
+
+Like I said, if you keep your style consistent, and you know, give your variables sensible and meaningful names, you will end up having to write a lot fewer comments, so once you get the hang of it it shouldn't be too troublesome and burdensome. 
+
+Actually a good rule is to always try to write your code as if comments didn't exist - that should force you to write a very sleek and self-documented style, and then write loads of comments just to make sure, haha
 
 ---
 
@@ -1068,22 +1099,7 @@ There is also a more sinister aspect to this - as you would expect with somethin
 
 3. comments
 
-4. software citations
-
-
----
-
-# Ensuring *Consistency* and *documentation*
-
-1. style guides
-
-2. analysis journals
-
-3. comments
-
-4. software citations
-
-5. session information -- `pacckrat`
+4. session information -- `packrat`
 
 ---
 
