@@ -38,4 +38,6 @@ Oh dear lord, couldn't get one of the images (phd comics) to register the out.wi
 * make qr code for repo for last page
 * change two column setup in css by copying the whole default one to my-css, and placing it in the same folder as the .Rmd file. 
 
+# Wednesday 24.7.2019
 
+* packrat seems to automatically update my .gitignore file and delete /packrat/src/ which i am trying to ignore. this is fixed by going into packrat.opts and changing `vcs.ignore.src: TRUE`
