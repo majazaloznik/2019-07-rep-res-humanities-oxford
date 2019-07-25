@@ -6,7 +6,7 @@ CODE:= $(DIR)/code
 
 DATA:= $(DIR)/data
 
-FIG:= $(DIR)/figures
+FIG:= $(DIR)/docs/presentations/figures
 
 DT/P:= $(DATA)/processed
 DT/R:= $(DATA)/raw
@@ -24,7 +24,8 @@ DT/I/.rds :=  $(DT/I)/*.rds
 # all processed files
 DT/P/.rds := $(DT/P)/*.rds
 
-
+# all figure files
+FIGZ := $(FIG)/*.*
 
 # COMMANDS ####################################################################
 # recipe to make .dot file  of this makefile
@@ -89,7 +90,7 @@ endef
 # DEPENDENCIES   ##############################################################
 ###############################################################################
 
-all: journal readme dot notes presentation
+all: journal readme dot  presentation
 
 .PHONY: all
 
@@ -119,18 +120,18 @@ $(JRN)/journal.pdf:  $(JRN)/journal.Rmd $(FIG)/make.png
 
 
 # notes from Rmds ###########################################################
-notes:  $(JRN)/notes.pdf 
+# notes:  $(JRN)/notes.pdf 
 
 # notes  (with bibliography) render to  pdf
-$(JRN)/notes.pdf:  $(JRN)/notes.Rmd $(DT/D)/lit.bib
-	$(rmd2pdf)
+# $(JRN)/notes.pdf:  $(JRN)/notes.Rmd $(DT/D)/lit.bib
+# 	$(rmd2pdf)
 
 
 # presentations from Rmds ###########################################################
 presentation:  $(PREZ)/2019-07-25-RepRes-Oxford.html
 
 # presentation (with bibliography) render to  html
-$(PREZ)/2019-07-25-RepRes-Oxford.html: $(PREZ)/2019-07-25-RepRes-Oxford.Rmd $(DT/D)/lit.bib
+$(PREZ)/2019-07-25-RepRes-Oxford.html: $(PREZ)/2019-07-25-RepRes-Oxford.Rmd $(DT/D)/lit.bib $(FIGZ) $(FIG)/make.png
 	$(rmd2xari)
 
 # README from Rmds #############################################################

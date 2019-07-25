@@ -31,15 +31,12 @@ But I wanted to bring up this story also to demonstrate that it is often a slog,
 In addition to software there are other environmental variables that should be explicitly stated if they affect the results: " This information may include: operating system, specific packages, sub-routines, queries, files, libraries, scripts, service end-points, configurations, parameters or workflows" "this information should be described in the body of your paper, in the methods section, footnotes, acknowledgements or appendices.
 
 
-```{r phd, echo=FALSE, fig.cap="PhD: final.doc [http://phdcomics.com/comics/archive.php?comicid=1531]", out.height ='70%', out.width = '70%'}
-knitr::include_graphics(here::here("/figures/final-doc.jpg"))
-```
 
 
 ## style guide 
 
 ```{r xkcd, echo=FALSE, fig.cap="[xkcd: Code Quality [https://xkcd.com/1513/]", out.width = '90%'}
-knitr::include_graphics(here::here("/figures/code_quality.png"))
+knitr::include_graphics(here::here("docs/presentations/figures/code_quality.png"))
 ```
 
 text

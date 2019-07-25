@@ -17,7 +17,7 @@ output:
 So this is what my makefile looks like graphically at the minute:
 
 ```{r, echo = FALSE, out.width='100%'}
-knitr::include_graphics(paste0(rprojroot::find_root("Makefile"),"/figures/make.png"))
+knitr::include_graphics(paste0(rprojroot::find_root("Makefile"),"/docs/presentations/figures/make.png"))
 ```
 
 OK, now let's have a look at `packrat`. 
@@ -50,4 +50,5 @@ Oh dear lord, couldn't get one of the images (phd comics) to register the out.wi
 * wait a second and see. 
 * oh, also commit and push first haha
 * todo: add instructions for githubpages to mz!
+* also if pages don't work right away, because you fucked up, go back to settings and turn them off and back on, that usually helps a bit!
 * I'll just move the figures now to save time later?
