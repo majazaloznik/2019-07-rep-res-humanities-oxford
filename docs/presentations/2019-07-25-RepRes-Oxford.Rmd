@@ -477,11 +477,11 @@ Instead we should use the transparency of the research process to judge the rigo
 
 --
 
-    1. Production transparency
+  1. Production transparency
 
-    2. Data transparency
+  2. Data transparency
 
-    3. Analytic transparency
+  3. Analytic transparency
 
 
 .right[`r Citep(myBib, "moravcsik_2014")`]
@@ -774,10 +774,11 @@ I kind of made this last one up, convenience as a principle of Reproducible rese
 ???
 
 Scripting your analysis is one of the most basic principles of producing reproducible research. Scripting means you are able to answer the most important question for reproducibility: What did you do?
+--
 
 * What did you do?
 
---
+???
 
 Remembering what you did, what steps you took in your analysis is a huge tripping point when it comes to retracing your steps. And if you used any sort of point and click steps, it becomes nearly impossible.
 
@@ -1237,6 +1238,7 @@ This is very personal I guess. My journals are usually a mix of steps i've taken
 
 So again, this is a work in progress, but you can always do better in documenting the steps you took and the reasons you took them.
 
+---
 
 # Ensuring *Consistency* and *documentation*
 
@@ -1290,6 +1292,8 @@ One way or another it is highly likely that software played an important role in
 * Which software should be cited?
 
   * Critical and/or novel contribution.
+
+???
 
 For example you might think it silly to acknowledge that you used Microsoft Excel to do your analysis, but that is only if you thing it the software is faultless and your analysis would have produced the exact same results in any spreadsheet programme. But that may not be true. Excel--not to pick on any specific programme--but it has a bunch of quirks that are specific to it, you might even call them bugs. And they could very well affect your analysis, which counts as having a critical contribution.
 
@@ -1607,10 +1611,11 @@ With large projects this is incredibly useful. It forces you to organize your fi
 
 
 ---
-GNU Make
+
+# GNU Make
 
 ```{r, echo = FALSE, out.width='100%'}
-knitr::include_graphics(paste0(rprojroot::find_root("Makefile"),"/docs/presentations/figures/make.png"))
+knitr::include_graphics("figures/make.png")
 ```
 
 ???
