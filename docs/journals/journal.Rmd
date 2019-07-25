@@ -52,3 +52,4 @@ Oh dear lord, couldn't get one of the images (phd comics) to register the out.wi
 * todo: add instructions for githubpages to mz!
 * also if pages don't work right away, because you fucked up, go back to settings and turn them off and back on, that usually helps a bit!
 * I'll just move the figures now to save time later?
+* Added some code to my.css to make slide numbers invisible. code from [here](https://github.com/yihui/xaringan/wiki/Slide-number)

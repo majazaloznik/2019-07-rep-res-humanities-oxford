@@ -26,6 +26,9 @@ myBib <- ReadBib(here::here("data/dictionaries/lit.bib"), check = FALSE)
 
 # Outline of this talk
 
+???
+
+OK, so I should probably introduce myself briefly here? 
 --
 
 `1.` Reproducibility: *What?*
@@ -67,7 +70,7 @@ By where I mean "in the humanities", so I'll briefly touch on how we think about
 
 ???
 
-Now for the gist of the talk, how do we apply these principles and which tools do we use to make the whole workflow reproducible, from the data gathering, to its analysis and finally its presentation.
+Now for the gist of the talk, what are the principles of reproducibility and which tools do we use to make the whole workflow reproducible, from the data gathering, to its analysis and finally its presentation.
 
 --
 
@@ -77,18 +80,16 @@ Now for the gist of the talk, how do we apply these principles and which tools d
 
 ???
 
-So within the how we will discuss the principles which underpin reproducibility in practice such as open data, open research and transparency, and also some of the tools that make this process easier to manage and help you setup a reproducible workflow. 
+So within the how we will discuss the principles which underpin reproducibility in practice such as open data, scripting your analysis, segmentation, and transparency, and also some of the tools that make this process easier to manage and help you setup a reproducible workflow. 
 
-Again this refers to all the steps in the research process from data gathering, analysis to presentation and dissemination. I will discuss in particular R and Rstudio, git and make and knitr. 
+I will discuss in particular R and Rstudio, git and make and knitr. 
 
-I should add here that I have previously given a version of this talk that was called more along the lines of reproducible research with R and Rstudio. I have substantially rewritten it so the focus in a lot less on the tools, but they remain an important part of it, since it would just be too abstract otherwise. 
+Now just to be clear about the aims of this talk: it is tricky with a target audience like you guys with a variety of levels of experience and interest. So what I have tried to do is focus more on the principles instead of the practicalities of the tools. 
 
-I have also not gone in the other direction of broadening the focus to include all possible alternative tools. This is partly because I don't know them well from personal experience, and partly because I truly think R and Rstudio are one of the strongest reproducible research environments available. But at least if you are a python user you are in good hands and can set up a workflow that is equivalent. 
+I have also not gone in the other direction of broadening the focus to include mentions of all possible alternative tools. This is partly because I don't know them well from personal experience, and partly because I truly think R and Rstudio are one of the strongest reproducible research environments available. But don't worry if you are a python user or planning on becoming one, you'll be fine. 
 
 But even if you are not an R user, and never intend to become one, I think you should still get something useful out of it, perhaps seeing an implementation of one of the principles might spur you to find an analogous solution that applies better to your setup. 
 
-
-  
 ---
 
 # What is Reproducibility?
@@ -96,6 +97,8 @@ But even if you are not an R user, and never intend to become one, I think you s
 * Reproducibility vs Replicability or Replication?
 
 ???
+
+
 OK, so first of all I want to make it clear what I mean by reproducibility. In particular in relation to replicability or replication of research. The thing is that both these terms are very often used interchangeably and that can sometimes lead to confusion. So here's the way I will use them here. 
 ---
 
@@ -240,7 +243,7 @@ So to be more concrete, we want to ensure that our whole research workflow, whic
 
  .right[(imgur user TVsJeff)]
 
-```{r imgur, echo=FALSE, fig.cap="Show your work *ad absurdum*", fig.height=5}
+```{r imgur1, echo=FALSE, fig.cap="Show your work *ad absurdum*", fig.height=5}
 knitr::include_graphics("figures/imgur.jpg")
 ```
 
@@ -248,6 +251,17 @@ knitr::include_graphics("figures/imgur.jpg")
 So the sort of reproducibility that I'm talking about is about "showing your work". And yes, that can sometimes be the most annoying thing in the world. As in this example here, where a user on imgur vented his annoyance at his maths teacher who wanted him to show his work by taking it to a really extreme conclusion. I'm not sure if you can see this very well, this starts with "Neurons travel through synapses, finger muscles move to grasp writing utensil" and this whole page is just to describe the work that went into writing his name on the homework. And apparently this is followed by 44 more pages like this one.
 
 So obviously this is a bit of an extreme example, but my point is that honestly yes, ensuring your analysis is really reproducible can be quite annoying, and it can seem pointless and unnecessary.
+
+---
+*Reproducibility means showing your work: *
+
+ .right[(imgur user TVsJeff)]
+
+```{r imgur, echo=FALSE, fig.cap="Show your work *ad absurdum*", fig.height=5}
+knitr::include_graphics("figures/imgur.jpg")
+```
+
+???
 
 BUT it is worth the hassle in the end. And it will be less of a hassle if you plan systematically on doing it from the start instead of thinking about it retrospectively and trying to fix it after the fact.
 
@@ -261,7 +275,7 @@ So why would we want it to be reproducible?
 
 --
 
-`1.` For science
+`1.` For science:
 
 --
 * opens claims to scrutiny
@@ -274,7 +288,7 @@ This is one way of distinguishing science---in the positivist sense anyway---fro
 
 # Why should research be reproducible?
 
-`1.` For science
+`1.` For science:
 
 * opens claims to scrutiny
 
@@ -288,13 +302,13 @@ As a way to further cumulative scientific knowledge, reproducible research cuts 
 
 # Why should research be reproducible?
 
-`1.` For science
+`1.` For science:
 
 * opens claims to scrutiny
 
 * helps avoid duplication and encourage accumulation of knowledge
 
-`2.` For you.
+`2.` For you:
 
 ???
 I cannot overstate this enough. Despite the sometimes large upfront investment into learning the tools and setting up your work process, it is worth it even just for making your life a lot easier in the long run
@@ -303,13 +317,13 @@ I cannot overstate this enough. Despite the sometimes large upfront investment i
 
 # Why should research be reproducible?
 
-`1.` For science
+`1.` For science:
 
 * opens claims to scrutiny
 
 * helps avoid duplication and encourage accumulation of knowledge
 
-`2.` For you.
+`2.` For you:
 
 * forces you to develop better working habits
 
@@ -321,32 +335,34 @@ Better work habits mean you are more effective, better organised, produce higher
 
 # Why should research be reproducible?
 
-`1.` For science
+`1.` For science:
 
 * opens claims to scrutiny
 
 * helps avoid duplication and encourage accumulation of knowledge
 
-`2.` For you.
+`2.` For you:
 
 * forces you to develop better working habits
 
 * makes changes and updates of your work easier
 
 ???
-most research is an iterative process where you keep going back and rerunning parts of your analysis, not a linear one off. additionally you might want to get back to your research after several years have passed and update it with newly available data. reproducible research makes that so much easier. I'm sure we've all been in the position---i certainly have---of going through an old folder for a project of mine, scratching my head trying to figure out what i was trying to do. if you recognize yourself in that, you definitely need to apply some principles of reproducible research to your workflow.
+most research is an iterative process where you keep going back and rerunning parts of your analysis, not a linear one off. additionally you might want to get back to your research after several years have passed and update it with newly available data. reproducible research makes that so much easier. 
+
+I'm sure we've all been in the position---i certainly have---of going through an old folder for a project of mine, scratching my head trying to figure out what i was trying to do. if you recognize yourself in that, you definitely need to apply some principles of reproducible research to your workflow.
 
 ---
 
 # Why should research be reproducible?
 
-`1.` For science
+`1.` For science:
 
 * opens claims to scrutiny
 
 * helps avoid duplication and encourage accumulation of knowledge
 
-`2.` For you.
+`2.` For you:
 
 * forces you to develop better working habits
 
@@ -361,13 +377,13 @@ How? Well your research will be more useful to more researchers than if it were 
 
 # Why should research be reproducible?
 
-`1.` For science
+`1.` For science:
 
 * opens claims to scrutiny
 
 * helps avoid duplication and encourage accumulation of knowledge
 
-`2.` For you.
+`2.` For you:
 
 * forces you to develop better working habits
 
@@ -406,7 +422,12 @@ The thing is reproducibility isn't endemic or native to social sciences either. 
 
 As a guiding principle the idea of reproducible research has its stronghold in quantitative research. Research which uses numbers and statistical techniques to obtain results.
 
---
+---
+
+# Reproducibility in the Humanities?
+
+
+* reproducibility is not limited to any branch of science
 
 * but focus is nevertheless on computational research
 
@@ -414,11 +435,18 @@ As a guiding principle the idea of reproducible research has its stronghold in q
 
 Many of the tools and techniques I will discuss today actually stem explicitly from the fields of computational research: they are tools that programmers and developers use themselves. Their efficiency, especially when it comes to collaborative work, depends on being transparent, being able to show their work, being able to systematic about their workflow.
 
-And these tools have been appropriated by quantitative scientists, including in the social sciences and increasingly so in the humanities. The methods of analysis are changing in the humanities as well, with more and more researchers using quantitative analysis in their studies. In this talk I will mainly focus on this sort of reproducibility: of the workflow for computational research including the gathering, analysis and presentation of results.
+And these tools have been appropriated by quantitative scientists, including in the social sciences and increasingly so in the humanities. In this talk I will mainly focus on this sort of reproducibility: of the workflow for computational research including the gathering, analysis and presentation of results.
 
-In this respect the humanities are no different from the social sciences or from the natural sciences. The same principles apply and for the most part the same tools. I will however as an aside say a bit about reproducibility in non-computational research, so in qualitative research.
+In this respect the humanities are no different from the social sciences or from the natural sciences. The same principles apply and for the most part the same tools. 
 
---
+---
+
+# Reproducibility in the Humanities?
+
+
+* reproducibility is not limited to any branch of science
+
+* but focus is nevertheless on computational research
 
 * what about qualitative research?
 
@@ -430,7 +458,16 @@ Qualitative research does not necessarily follow that, but might be based on an 
 
 However this doesn't mean we have to revert to the sort of solipsism where only the author understands how the findings were achieved.
 
---
+---
+
+# Reproducibility in the Humanities?
+
+
+* reproducibility is not limited to any branch of science
+
+* but focus is nevertheless on computational research
+
+* what about qualitative research?
 
 * Transparency
 
@@ -462,7 +499,31 @@ Now although these three types of transparency do not afford the full reproducib
 
 So while this information might not make the research reproducible in the narrow sense of the word, it is the necessary requirement for reproducibility of all research.
 
+# Reproducibility in the Humanities?
+
+
+* reproducibility is not limited to any branch of science
+
+* but focus is nevertheless on computational research
+
+* what about qualitative research?
+
+* Transparency
+
+???
+
+Instead we should use the transparency of the research process to judge the rigor of qualitative research.
+
 --
+
+    1. Production transparency
+
+    2. Data transparency
+
+    3. Analytic transparency
+
+
+.right[`r Citep(myBib, "moravcsik_2014")`]
 
 * *cf.* [Annotation for Transparent Inquiry](https://qdr.syr.edu/ati)
 
@@ -480,6 +541,7 @@ Before we move to discuss the tools for reproducible research, I want to give a 
 
 SO I wanted to mention a rather famous story in the history of reproducible research, this one is from the field of macroeconomics. So Carmen Reinhart and Kenneth Rogoff wrote a rather famous paper in 2010 seemingly proving that high levels of GDP suppresses economic growth in countries. Now this was just after the economic crisis and this paper became quite popular as a means of arguing for austerity measures.
 --
+
 ```{r rrexcel1, echo=FALSE, fig.cap="Encouraging errors", out.widht = '70%', out.height='70%'}
 knitr::include_graphics("figures/rrexcel.png")
 ```
@@ -515,6 +577,11 @@ Look, I know for a lot of you Excel in a super comfortable go-to programme that 
 
 # Principles and Tools for Reproducible Research
 
+???
+
+OK, so let me first outline a set of principles that underlie RepRes that I want to talk about to you today, and some useful tools
+--
+
 .left-column[
   * *Scripting* your analysis
 ]
@@ -524,9 +591,11 @@ Look, I know for a lot of you Excel in a super comfortable go-to programme that 
 ]
 
 ???
- One of the most important principles that underpins analytic transparency is Scripting.
 
- s
+One of the most important principles that underpins analytic transparency is Scripting.
+ 
+Scripting essentially means executing your work process using code, which can be rerun. 
+
 ---
 
 # Principles and Tools for Reproducible Research
@@ -702,10 +771,13 @@ I kind of made this last one up, convenience as a principle of Reproducible rese
 
 # Scripting languages---R
 
-* What did you do?
 ???
 
 Scripting your analysis is one of the most basic principles of producing reproducible research. Scripting means you are able to answer the most important question for reproducibility: What did you do?
+
+* What did you do?
+
+--
 
 Remembering what you did, what steps you took in your analysis is a huge tripping point when it comes to retracing your steps. And if you used any sort of point and click steps, it becomes nearly impossible.
 
@@ -848,6 +920,30 @@ Well, I'm not here to sell R to you, but I will say that it fulfills the scripti
 
 A huge strength of these two languages are their broader development environments which allow easy integration of all of the other tools for reproducibility we will discuss today. With R this comes in the form of RStudio, which I will discuss towards the end.
 
+---
+
+# Scripting languages---R
+
+* What did you do?
+
+    * Download data
+
+    * Data editing
+
+    * Data analysis
+
+    * Data visualisation
+
+* Scripting:
+
+    * Makes your life easier during your analysis
+
+    * Makes everyone else's life easier after your analysis
+
+* Why R?
+
+???
+
 But there are also second best solutions that should not be scoffed at. If you are for example an SPSS user, there is a relatively straightforward way to start scripting your work without even learning a new programming language. SPSS lets you copy the syntax code for any command you are about to execute and place it instead into a script file, and run it from there. So if any of you have been trained in SPSS and feel relearning a whole new statistical software might not be worth your while, you can get pretty decent scripting from SPSS, although I don't think you'll do that well on some of the other topics we will discuss. But that's still better than nothing!
 
 
@@ -873,7 +969,15 @@ In the broader sense we usually speak not just of the data, but of the code, and
 
 In both cases really the same principles apply. 
 
---
+
+---
+
+# Open Data---figshare and other repositories
+
+
+* Open data in the narrow sense
+
+* Open data in the broad sense
 
 * FAIR principles
 
@@ -908,11 +1012,24 @@ I would like to explicitly mention figshare as a preferred repository for deposi
   + accessibility
    
 ???
-Accessibility is naturally the ideal, but I would add that in cases where confidentiality is an issue, this is often used as an excuse for keeping all the data inaccessible, when actually there are ways of limiting accessibility e.g. by requiring people to sign confidentiality agreements or commit to certain rules before being granted access are still preferable than denying access to everyone. 
+
+Accessibility is naturally the ideal, but I would add that in cases where confidentiality is an issue, this is often used as an excuse for keeping all the data inaccessible, when actually there are ways of limiting accessibility e.g. by requiring people to sign confidentiality agreements or commit to certain rules before being granted access are still preferable than denying access to everyone.
 
 
---
+---
 
+# Open Data---figshare and other repositories
+
+* Open data in the narrow sense
+
+* Open data in the broad sense
+
+* FAIR principles
+
+  + findability
+  
+  + accessibility
+  
   + interoperability 
   
   + reusability
@@ -923,21 +1040,21 @@ Interoperability and reusability are related to things like ensuring file format
 
 Additionally good metadata and documentation critically affect the usability of data, a openly published dataset that doesn't have a code book is essentially a data dump and pretty much unusable. 
 
+---
 
 # Version control---git and GitHub
 
-```{r git, echo=FALSE,fig.cap= "Piled higher and Deeper", out.width = "300px"}
-knitr::include_graphics("figures/final-doc.png")
+```{r git, echo=FALSE,fig.cap= "Piled higher and Deeper", out.width ='50%', out.height = '50%'}
+knitr::include_graphics("figures/final-doc.jpg")
 ```
 
 ???
 
-So first of all let me explain what version control means:
-when you make what is called a commit, you make a snapshot of your project. It is not just saving a single file, but the state of all of your file at a certain point in time.
-
-Every time you make a new commit, git keeps track of the changes that you have made. It is very smart that way in that it doesn't save a whole copy of your project, but only the changes, that way it is very light on resources.
-
 I'm sure we all have folders full of very creatively named files like this.. This quickly gets unwieldy, and is of course very inefficient, since you are duplicating your work in storage every time. Additionally the file names are not very informative anyway. Final_final_now_really final....
+
+Version control is a way to avoid this: what you do is make a snapshot of your project. It is not just saving a single file, but the state of all of your file at a certain point in time.
+
+This is called a commit. and every time you make a new commit, git keeps track of the changes that you have made. It is very smart that way in that it doesn't save a whole copy of your project, but only the changes, that way it is very light on resources.
 
 Version control therefore allows you to revert back to previous versions of your project, but it also helps you keep track of several parallel versions for example if you are collaborating with someone else. Then you might both be working on parts of the project, and version control ensures that you are able to merge these branches, as they are called, back together.
 
@@ -1090,6 +1207,10 @@ And this means that you can search for authors you've read and perhaps find the 
 
 # Ensuring *Consistency* and *documentation*
 
+???
+The consistency and documentation section is a bit more messy with regard to tools, but the principles are clear enough. Document everything and do so consistently. 
+
+--
 1. style guides
 
 ???
@@ -1116,9 +1237,6 @@ This is very personal I guess. My journals are usually a mix of steps i've taken
 
 So again, this is a work in progress, but you can always do better in documenting the steps you took and the reasons you took them.
 
-For me my journal lives in the documentation folder and I write it in markdown and knit it to pdf. I also include the diagram of the makefile in there for a quick overview of the project. 
-
----
 
 # Ensuring *Consistency* and *documentation*
 
@@ -1137,8 +1255,6 @@ Now commenting is a tricky one to talk about, it's difficult to set any rules ab
 My experience is basically that everyone including me, does not comment nearly enough. But it depends on your coding style as well. If you have  a lovely coding style and write beautiful code, then you might be able to claim the code is so perfectly self-explanatory it does not need any extra comments. 
 
 But more often than not that will not be the case. For the sake of anyone who may try to read your code after you - and don't forget, that mainly includes a future version of yourself, you really want to do them a favour and comment your code liberally. 
-
-Like I said, if you keep your style consistent, and you know, give your variables sensible and meaningful names, you will end up having to write a lot fewer comments, so once you get the hang of it it shouldn't be too troublesome and burdensome. 
 
 Actually a good rule is to always try to write your code as if comments didn't exist - that should force you to write a very sleek and self-documented style, and then write loads of comments just to make sure, haha
 
@@ -1163,11 +1279,17 @@ Citing software seems super neglected, so I want to talk a bit more about it
 
 * Which software should be cited?
 
-  * Critical and/or novel contribution.
-
 ???
 
 One way or another it is highly likely that software played an important role in you producing your research. This contribution should be acknowledged. Now this doesn't mean you have to make sure everyone knows you used Microsoft Word to write your paper, a good rule of thumb is to ask yourself if the software contributed critically to your research and/or if it provided something novel. This is the recommendation of the British Software sustainability insititute. If this feels a bit ambiguous, I would suggest you err on the side of citing rather than not.
+
+---
+
+# How to cite software
+
+* Which software should be cited?
+
+  * Critical and/or novel contribution.
 
 For example you might think it silly to acknowledge that you used Microsoft Excel to do your analysis, but that is only if you thing it the software is faultless and your analysis would have produced the exact same results in any spreadsheet programme. But that may not be true. Excel--not to pick on any specific programme--but it has a bunch of quirks that are specific to it, you might even call them bugs. And they could very well affect your analysis, which counts as having a critical contribution.
 
@@ -1313,8 +1435,7 @@ In some cases it might actually be wise to go beyond just saving the information
 You might instead want to ensure you can replicate it exactly every time. 
 
 In R the situation commonly arrises that you need to use dozens of different packages to run a particular project. Most of the time you would automatically update the packages and your code would continue to work OK, but sometimes updates like that can break it. And in those situations it's very difficult to figure out what caused the breakage.
-
---
+---
 
 # Reproducible package management in R---`packrat`
 
@@ -1497,7 +1618,6 @@ here's a graphical visualisation of a makefile, this is actually for the reposit
 
 
 
- <!-- `r Citep(myBib, "jacksonNodate")` -->
 
 
  <!-- `r Citep(myBib, "hong2015top")` -->
@@ -1545,6 +1665,7 @@ And RStudio is one such tool. It is an integrated development environment for R.
 --
 
 * we're only human, *convenience* is a legitimate principle if it leads to greater compliance!
+
 
 
 ---
