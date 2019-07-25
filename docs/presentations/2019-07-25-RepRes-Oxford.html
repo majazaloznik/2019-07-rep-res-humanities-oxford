@@ -84,9 +84,35 @@ I will discuss in particular R and Rstudio, git and make and knitr.
 
 Now just to be clear about the aims of this talk: it is tricky with a target audience like you guys with a variety of levels of experience and interest. So what I have tried to do is focus more on the principles instead of the practicalities of the tools. 
 
+
+---
+
+# Outline of this talk
+
+`1.` Reproducibility: *What?*
+
+
+`2.` Reproducibility: *Why?*
+
+
+`3.` Reproducibility: *Where?*
+
+
+`4.`  Reproducibllity: *How?*
+
+* *Principles*
+    
+* *Tools*
+
+???
+
 I have also not gone in the other direction of broadening the focus to include mentions of all possible alternative tools. This is partly because I don't know them well from personal experience, and partly because I truly think R and Rstudio are one of the strongest reproducible research environments available. But don't worry if you are a python user or planning on becoming one, you'll be fine. 
 
 But even if you are not an R user, and never intend to become one, I think you should still get something useful out of it, perhaps seeing an implementation of one of the principles might spur you to find an analogous solution that applies better to your setup. 
+
+--
+
+`5.` *Example in the wild?*
 
 ---
 
@@ -206,6 +232,9 @@ And it's essentially only the last type of replication that I'm talking about he
 Of course some of the principles of reproducibility apply to the broader levels as well, data has to be openly available if anyone is to re-analyse it with their own methods. And experimental methodology must also be documented transparently if anyone is going to replicate your experiment.
 
 But the gist of reproducibility as understood here is ensuring that your results are reproducible using the same data and methods you used.
+
+
+
 
 ---
 
@@ -471,14 +500,15 @@ Instead we should use the transparency of the research process to judge the rigo
 
 --
 
-  1. Production transparency
+1. Production transparency
 
-  2. Data transparency
+2. Data transparency
 
-  3. Analytic transparency
+3. Analytic transparency
 
 
 .right[(Moravcsik, 2014)]
+
 ???
 
 Following Moravscik we can speak of three dimensions of transparency:
@@ -493,6 +523,8 @@ Now although these three types of transparency do not afford the full reproducib
 
 So while this information might not make the research reproducible in the narrow sense of the word, it is the necessary requirement for reproducibility of all research.
 
+---
+
 # Reproducibility in the Humanities?
 
 
@@ -504,24 +536,20 @@ So while this information might not make the research reproducible in the narrow
 
 * Transparency
 
-???
+1. Production transparency
 
-Instead we should use the transparency of the research process to judge the rigor of qualitative research.
+2. Data transparency
 
---
-
-    1. Production transparency
-
-    2. Data transparency
-
-    3. Analytic transparency
-
+3. Analytic transparency
 
 .right[(Moravcsik, 2014)]
 
 * *cf.* [Annotation for Transparent Inquiry](https://qdr.syr.edu/ati)
 
 ???
+So while this information might not make the research reproducible in the narrow sense of the word, it is the necessary requirement for reproducibility of all research.
+
+
 Furthermore many of the principles that I want to discuss now, still apply to qualitative research, although perhaps not all of the tools. With regard to tools though I would suggest you look at the Annotation for Transparent Inquiry which is an approach to presenting qualitative research in a more transparent way by allowing rich annotations and linking of sources and citations.
 
 ---
@@ -1441,7 +1469,9 @@ In R the situation commonly arrises that you need to use dozens of different pac
 # Reproducible package management in R---`packrat`
 
 * **isolated**: installing other packages won't break your project
+
 * **portable**: easy to share , even cross platform
+
 * **reproducible**: because it records the exact versions of the packages your project depends on
 
 ???
@@ -1604,7 +1634,8 @@ With large projects this is incredibly useful. It forces you to organize your fi
 
 
 ---
-GNU Make
+
+# GNU Make
 
 &lt;img src="figures/make.png" width="100%" /&gt;
 
@@ -1701,7 +1732,7 @@ pp. 1232-1233. ISSN: 0036-8075. DOI:
 
 GitHub repository for this presentation:
 
-[GitHub repository for this presentation: https://github.com/majazaloznik/2019-07-rep-res-humanities-oxford"](https://github.com/majazaloznik/2019-07-rep-res-humanities-oxford")
+[GitHub repository for this presentation: https://github.com/majazaloznik/2019-07-rep-res-humanities-oxford"](https://github.com/majazaloznik/2019-07-rep-res-humanities-oxford)
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
